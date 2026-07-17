@@ -19,11 +19,11 @@
         <div class="border-b-2 border-gray-800 pb-4 mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex-shrink-0">
                 <!-- Mantendo a Logo via Proxy -->
-                <img src="https://wsrv.nl/?url=mognodesign.com.br/wp-content/themes/mognodesign/assets/img/logo-footer.png" crossorigin="anonymous" alt="Mogno Home Design" class="h-14 object-contain">
+                <img src=../fotos/logo-mogno.png alt="Mogno Home Design" class="h-14 object-contain">
             </div>
             <div class="text-center md:text-right">
-                <h1 class="text-xl md:text-2xl font-bold text-gray-800 uppercase tracking-wide">Relatório de Medição Técnica</h1>
-                <p class="text-gray-500 text-sm mt-1">Comprovação de visita e validação de medidas</p>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-800 uppercase tracking-wide">Relatório de Entrega</h1>
+                <p class="text-gray-500 text-sm mt-1">Comprovação de Entrega</p>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
                     <input type="text" class="w-full border-b border-gray-400 bg-transparent focus:outline-none focus:border-blue-500 py-1 text-sm" placeholder="Nome do cliente ou empresa">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">Data da Medição:</label>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Data da Entrega:</label>
                     <input type="date" class="w-full border-b border-gray-400 bg-transparent focus:outline-none focus:border-blue-500 py-1 text-sm">
                 </div>
                 <div>
@@ -53,10 +53,6 @@
                     <label class="block text-xs font-bold text-gray-700 mb-1">Responsável pela Obra no Local:</label>
                     <input type="text" class="w-full border-b border-gray-400 bg-transparent focus:outline-none focus:border-blue-500 py-1 text-sm">
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">Medidor (Técnico):</label>
-                    <input type="text" class="w-full border-b border-gray-400 bg-transparent focus:outline-none focus:border-blue-500 py-1 text-sm">
-                </div>
                 <div class="col-span-1 md:col-span-2">
                     <label class="block text-xs font-bold text-gray-700 mb-1">Supervisor:</label>
                     <input type="text" class="w-full border-b border-gray-400 bg-transparent focus:outline-none focus:border-blue-500 py-1 text-sm">
@@ -68,11 +64,11 @@
             <div class="space-y-2">
                 <label class="flex items-start space-x-2 cursor-pointer">
                     <input type="radio" name="status" class="mt-1 h-4 w-4 text-blue-600">
-                    <span class="text-xs text-gray-800"><strong>Medição Concluída e Aprovada:</strong> Todas as medidas foram conferidas com sucesso, sem impedimentos, e validadas pelo responsável no local.</span>
+                    <span class="text-xs text-gray-800"><strong>Projeto Concluído e Aprovado:</strong> Todas os ambientes foram conferidos com sucesso, sem impedimentos, e validados pelo responsável no local.</span>
                 </label>
                 <label class="flex items-start space-x-2 cursor-pointer">
                     <input type="radio" name="status" class="mt-1 h-4 w-4 text-blue-600">
-                    <span class="text-xs text-gray-800"><strong>Tentativa de Medição (Impedimento):</strong> A equipe compareceu ao local, mas a medição não pôde ser realizada/concluída.</span>
+                    <span class="text-xs text-gray-800"><strong>Tentativa de Entrega (Impedimento):</strong> A equipe compareceu ao local, mas a entrega não pôde ser realizada/concluída.</span>
                 </label>
             </div>
 
@@ -88,7 +84,12 @@
                 <!-- Termo Jurídico -->
                 <div class="text-[11px] text-gray-600 text-justify bg-gray-50 p-3 rounded border border-gray-200 leading-snug">
                     <strong class="text-gray-800 text-xs">Termo de Aceite / Ciência de Visita:</strong><br>
-                    Declaro para os devidos fins que acompanhei a visita técnica da equipe no ambiente supracitado. Em caso de <strong>medição concluída</strong>, atesto que o ambiente encontra-se liberado e aprovo as marcações realizadas, autorizando a sequência do projeto. Em caso de <strong>tentativa de medição (impedimento)</strong>, reconheço a presença da equipe na data informada, estando ciente de que o serviço não ocorreu por motivos descritos nas observações (ex: obra não finalizada, local trancado, ausência de responsável, etc.), podendo acarretar reagendamento ou custos adicionais de deslocamento.
+                    Declaro para os devidos fins que acompanhei a entrega da equipe no ambiente supracitado. 
+                    Em caso de <strong>Projeto Concluído</strong>, atesto que o ambiente encontra-se finalizado, 
+                    aprovando a entrega do projeto. Em caso de <strong>Tentativa de Entrega (Impedimento)</strong>, 
+                    reconheço a presença da equipe na data informada, estando ciente de que o serviço não ocorreu por motivos 
+                    descritos nas observações (ex: obra não finalizada, local trancado, ausência de responsável, etc.), 
+                    podendo acarretar reagendamento ou custos adicionais de deslocamento.
                 </div>
 
                 <!-- Assinatura -->
@@ -103,10 +104,10 @@
                         </div>
                         <!-- Medidor Assina na tela -->
                         <div class="flex flex-col items-center">
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Assinatura do Medidor</label>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Assinatura do Supervisor</label>
                             <!-- Altura restaurada para 120 -->
                             <canvas id="assinatura-medidor-canvas" class="border-2 border-gray-300 rounded bg-gray-50 cursor-crosshair w-full" height="120"></canvas>
-                            <span class="text-xs text-gray-500 mt-1">Responsável técnico</span>
+                            <span class="text-xs text-gray-500 mt-1">Supervisor</span>
                         </div>
                     </div>
                 </div>
@@ -142,7 +143,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            Salvar e Gerar PDF
+            Salvar PDF
         </button>
     </div>
 
