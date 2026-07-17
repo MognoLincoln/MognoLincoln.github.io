@@ -4,19 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório de Medição</title>
-    <!-- Tailwind CSS para o layout -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Biblioteca html2pdf para salvar o layout como PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body class="bg-gray-100 min-h-screen py-8 flex flex-col">
-    <!-- CONTEÚDO QUE VAI PARA O PDF -->
-    <!-- Reduzimos o padding no celular (p-4) e pc (p-6) para economizar espaço -->
-    <div id="conteudo-pdf" class="max-w-3xl mx-auto bg-white p-4 md:p-8 shadow-md w-full">  
-        <!-- Cabeçalho Novo (Alinhado) -->
+    <div id="conteudo-pdf" class="max-w-3xl mx-auto bg-white p-4 md:p-8 shadow-md w-full">
         <div class="border-b-2 border-gray-800 pb-4 mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex-shrink-0">
-                <!-- Mantendo a Logo via Proxy -->
                 <img src="https://wsrv.nl/?url=mognodesign.com.br/wp-content/themes/mognodesign/assets/img/logo-footer.png" crossorigin="anonymous" alt="Mogno Home Design" class="h-14 object-contain">
             </div>
             <div class="text-center md:text-right">
@@ -24,9 +18,7 @@
                 <p class="text-gray-500 text-sm mt-1">Comprovação de visita e validação de medidas</p>
             </div>
         </div>
-      <!-- Formulário com espaçamento maior (space-y-4) -->
         <form class="space-y-4">
-            <!-- Seção 1 -->
             <div class="bg-gray-50 p-2 font-bold border-l-4 border-blue-500 text-gray-700 mb-2 text-sm">1. Dados do Cliente e do Projeto</div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div class="col-span-1 md:col-span-2">
@@ -42,7 +34,6 @@
                     <input type="text" class="w-full border-b border-gray-400 bg-transparent focus:outline-none focus:border-blue-500 py-1 text-sm" placeholder="Quarto, Cozinha, Sala...">
                 </div>
             </div>
-            <!-- Seção 2 -->
             <div class="bg-gray-50 p-2 font-bold border-l-4 border-blue-500 text-gray-700 mt-4 mb-2 text-sm">2. Equipe e Responsáveis</div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
@@ -58,7 +49,6 @@
                     <input type="text" class="w-full border-b border-gray-400 bg-transparent focus:outline-none focus:border-blue-500 py-1 text-sm">
                 </div>
             </div>
-            <!-- Seção 3 -->
             <div class="bg-gray-50 p-2 font-bold border-l-4 border-blue-500 text-gray-700 mt-4 mb-2 text-sm">3. Status da Visita</div>
             <div class="space-y-2">
                 <label class="flex items-start space-x-2 cursor-pointer">
@@ -70,33 +60,24 @@
                     <span class="text-xs text-gray-800"><strong>Tentativa de Medição (Impedimento):</strong> A equipe compareceu ao local, mas a medição não pôde ser realizada/concluída.</span>
                 </label>
             </div>
-            <!-- Seção 4 -->
             <div class="bg-gray-50 p-2 font-bold border-l-4 border-blue-500 text-gray-700 mt-6 mb-2 text-sm">4. Observações / Motivo de Impedimento</div>
             <div>
-                <!-- Altura da caixa de texto aumentada para 5 linhas -->
                 <textarea class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-blue-500 text-sm" rows="5" placeholder="Descreva aqui os detalhes, se houver muitos..."></textarea>
             </div>
-            <!-- Bloco Final: Forçando Quebra de Página para o PDF -->
             <div style="page-break-before: always; break-before: page; page-break-inside: avoid;" class="pt-6">
-                <!-- Termo Jurídico -->
                 <div class="text-[11px] text-gray-600 text-justify bg-gray-50 p-3 rounded border border-gray-200 leading-snug">
                     <strong class="text-gray-800 text-xs">Termo de Aceite / Ciência de Visita:</strong><br>
                     Declaro para os devidos fins que acompanhei a visita técnica da equipe no ambiente supracitado. Em caso de <strong>medição concluída</strong>, atesto que o ambiente encontra-se liberado e aprovo as marcações realizadas, autorizando a sequência do projeto. Em caso de <strong>tentativa de medição (impedimento)</strong>, reconheço a presença da equipe na data informada, estando ciente de que o serviço não ocorreu por motivos descritos nas observações (ex: obra não finalizada, local trancado, ausência de responsável, etc.), podendo acarretar reagendamento ou custos adicionais de deslocamento.
                 </div>
-                <!-- Assinatura -->
                 <div class="mt-6 pt-6 border-t border-gray-200">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Cliente Assina na tela -->
                         <div class="flex flex-col items-center">
                             <label class="block text-sm font-bold text-gray-700 mb-2">Assinatura do Cliente / Responsável</label>
-                            <!-- Altura restaurada para 120 -->
                             <canvas id="assinatura-canvas" class="border-2 border-gray-300 rounded bg-gray-50 cursor-crosshair w-full" height="120"></canvas>
                             <span class="text-xs text-gray-500 mt-1">Atesta o acompanhamento da visita</span>
                         </div>
-                        <!-- Medidor Assina na tela -->
                         <div class="flex flex-col items-center">
                             <label class="block text-sm font-bold text-gray-700 mb-2">Assinatura do Medidor</label>
-                            <!-- Altura restaurada para 120 -->
                             <canvas id="assinatura-medidor-canvas" class="border-2 border-gray-300 rounded bg-gray-50 cursor-crosshair w-full" height="120"></canvas>
                             <span class="text-xs text-gray-500 mt-1">Responsável técnico</span>
                         </div>
@@ -106,22 +87,17 @@
             <div style="page-break-before: always; break-before: page; page-break-inside: auto;" class="pt-6">
                 <div class="bg-gray-50 p-2 font-bold border-l-4 border-blue-500 text-gray-700 mb-4 text-sm flex justify-between items-center">
                     <span>5. Registro Fotográfico (Anexos)</span>
-                    <!-- Botão para adicionar foto (Fica oculto no PDF) -->
                     <label class="btn-ocultar-pdf cursor-pointer bg-blue-200 hover:bg-blue-300 text-blue-800 py-1 px-3 rounded text-xs font-bold transition-colors">
                         + Adicionar Foto
-                        <!-- capture="environment" abre a câmera traseira direto no celular -->
                         <input type="file" accept="image/*" multiple class="hidden" onchange="adicionarFotos(event)">
                     </label>
                 </div>                
-                <!-- Container das Fotos -->
                 <div id="galeria-fotos" class="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                    <!-- As imagens vão aparecer aqui -->
                 </div>
                 <p id="texto-sem-foto" class="text-xs text-gray-400 italic text-center mt-4">Nenhuma foto anexada até o momento.</p>
             </div>
         </form>
     </div>
-    <!-- BOTÕES DE AÇÃO (Ficam fora do PDF) -->
     <div class="max-w-3xl mx-auto w-full px-4 mt-8 mb-8 flex flex-col sm:flex-row justify-center gap-4">
         <button onclick="limparAssinatura()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors text-sm w-full sm:w-auto shadow-md">
             Limpar Assinaturas
